@@ -3,6 +3,8 @@ postgres:
     environment:
         POSTGRES_PASSWORD: "teamcityPassword"
         POSTGRES_DB: "teamcity"
+    volumes:
+        - /var/lib/postgresql
 
 teamcity:
     build: teamcity
@@ -10,3 +12,9 @@ teamcity:
         - postgres
     ports:
         - 8111:8111
+
+agent:
+    build: teamcity-agent
+    links:
+        - teamcity
+
