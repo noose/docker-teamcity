@@ -1,0 +1,13 @@
+postgres:
+    image: postgres
+    environment:
+        POSTGRES_PASSWORD: "teamcityPassword"
+        PGDATA: /data
+        POSTGRES_DB: "teamcity"
+
+teamcity:
+    build: teamcity
+    links: 
+        - postgres
+    ports:
+        - 8111:8111
